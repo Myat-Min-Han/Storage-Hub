@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-  ],
+, "app/(admin)/dashboard/lastStatus"  ],
   "exclude": ["node_modules"]
 }
