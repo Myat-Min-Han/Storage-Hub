@@ -136,13 +136,12 @@ export default async function DashboardPage() {
                     </div>
                     <div className='rounded-lg bg-white p-5 shadow-md flex  gap-8 items-center'>
                         {/* High Stocks Circle */}
-                        <div className='relative w-40 h-40'>
+                        <div className='relative w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40'>
                             <svg className='w-full h-full' viewBox="0 0 160 160">
                                 {/* background circle */}
                                 <circle 
-                                    className='text-gray-200'
+                                    className='stroke-gray-200'
                                     strokeWidth={12}
-                                    stroke='currentColor'
                                     fill='none'
                                     r={70}
                                     cx={80}
@@ -150,9 +149,8 @@ export default async function DashboardPage() {
                                 />
                                 {/* progress circle */}
                                 <circle 
-                                    className='text-green-500'
+                                    className='stroke-green-500'
                                     strokeWidth={12}
-                                    stroke='currentColor'
                                     fill='none'
                                     r={70}
                                     cx={80}
@@ -173,21 +171,19 @@ export default async function DashboardPage() {
                         </div>
 
                         {/* Low Stocks Circle */}
-                        <div className='relative w-40 h-40'>
+                        <div className='relative w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40'>
                             <svg className='w-full h-full' viewBox="0 0 160 160">
                                 <circle 
-                                    className='text-gray-200'
+                                    className='stroke-gray-200'
                                     strokeWidth={12}
-                                    stroke='currentColor'
                                     fill='none'
                                     r={70}
                                     cx={80}
                                     cy={80}
                                 />
                                 <circle 
-                                    className='text-red-500'
+                                    className='stroke-red-500'
                                     strokeWidth={12}
-                                    stroke='currentColor'
                                     fill='none'
                                     r={70}
                                     cx={80}
