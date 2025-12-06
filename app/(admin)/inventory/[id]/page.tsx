@@ -3,6 +3,7 @@ import { productsTable } from "@/src/db/schema";
 import { eq } from "drizzle-orm";
 import ProductBox from "@/components/ProductBox";
 import { stackServerApp } from "@/stack/server";
+import { Metadata } from "next";
 
 export type Product = {
     id: number;
@@ -12,6 +13,17 @@ export type Product = {
     sku: string;
     userId: string;
     createdAt: string;
+};
+
+export async function generateMetadata({
+    params
+}: { params: Promise<{ id: string }>}): Promise<Metadata> {
+    const id: number = parseInt((await params).id);
+    const [ product ] = await db.select().from(productsTable).where(eq(productsTable.id, id));
+
+    return {
+        title: product.name
+    }
 }
 
 export default async function ProductPage({
