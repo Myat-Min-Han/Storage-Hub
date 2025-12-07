@@ -35,7 +35,7 @@ export default function Sidebar() {
                 <UserButton showUserInfo/>
             </footer>
         </aside>
-        <div className="sm:hidden block p-4">
+        <div className="sm:hidden block p-2 bg-gray-50">
             <button onClick={() => setIsOpen(true)} className="p-1 rounded-md hover:bg-gray-200 cursor-pointer">
                 <Menu className="w-6 h-6"/>
             </button>

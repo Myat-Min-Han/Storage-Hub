@@ -92,7 +92,7 @@ export default function ProductBox({ product }: { product: Product }) {
                                     type="text"
                                     {...register("name", { required: true })}
                                 />
-                                : <span className="text-gray-900">{product.name}</span> 
+                                : <span className="text-gray-900 text-right">{product.name}</span> 
                         }
                     </div>
                     <div className="flex justify-between border-b pb-2">

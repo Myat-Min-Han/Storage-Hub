@@ -37,14 +37,14 @@ export default async function DashboardPage() {
     const data = await getWeeklyProducts();
 
     return (
-        <section className="min-h-screen bg-gray-100 p-8">
+        <section className="min-h-screen bg-gray-50 p-8">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
                 {/* Left Column */}
                 <div className="flex flex-col gap-5">
                     <div className="rounded-lg bg-white p-5 grid grid-cols-3 gap-4 shadow-md">
                         <div className="text-center flex flex-col gap-2">
-                            <h1 className="text-lg font-semibold text-gray-700">Total Products</h1>
-                            <p className="text-blue-600 text-2xl font-bold">{totalProducts.length || 0}</p>
+                            <h1 className="text-sm sm:text-lg font-semibold text-gray-700">Total Products</h1>
+                            <p className="text-blue-600 text-sm sm:text-2xl font-bold">{totalProducts.length || 0}</p>
                             <div className='flex gap-2 justify-center items-center'>
                                {productTrend.isUp && (
                                     <>
@@ -61,8 +61,8 @@ export default async function DashboardPage() {
                             </div>
                         </div>
                         <div className="text-center flex flex-col gap-2">
-                            <h1 className="text-lg font-semibold text-gray-700">Total Values</h1>
-                            <p className="text-blue-600 text-2xl font-bold">{totalProductsValue.toFixed(2)}</p>
+                            <h1 className="text-sm sm:text-lg font-semibold text-gray-700">Total Values</h1>
+                            <p className="text-blue-600 text-sm sm:text-2xl font-bold">{totalProductsValue.toFixed(2)}</p>
                             <div className='flex gap-2 justify-center items-center'>
                                 {valueTrend.isUp && (
                                     <>
@@ -79,8 +79,8 @@ export default async function DashboardPage() {
                             </div>
                         </div>
                         <div className="text-center flex flex-col gap-2">
-                            <h1 className="text-lg font-semibold text-gray-700">Low Stocks</h1>
-                            <p className="text-blue-600 text-2xl font-bold">{lowProducts.length}</p>
+                            <h1 className="text-sm sm:text-lg font-semibold text-gray-700">Low Stocks</h1>
+                            <p className="text-blue-600 text-sm sm:text-2xl font-bold">{lowProducts.length}</p>
                             <div className='flex gap-2 justify-center items-center'>
                                 {lowTrend.isUp && (
                                     <>
@@ -131,7 +131,7 @@ export default async function DashboardPage() {
 
                 {/* Right column */}
                 <div className="flex flex-col gap-5">
-                    <div className="rounded-lg bg-white p-5 shadow-md">
+                    <div className="rounded-lg bg-white p-2 shadow-md">
                         <Chart data={data}/>
                     </div>
                     <div className='rounded-lg bg-white p-5 shadow-md flex  gap-8 items-center'>
@@ -161,17 +161,17 @@ export default async function DashboardPage() {
                                     transform={`rotate(-90 ${80} ${80})`}
                                 />
                             </svg>
-                            <span className="absolute inset-0 flex items-center justify-center font-bold text-lg">
+                            <span className="absolute inset-0 flex items-center justify-center font-bold text-sm sm:text-lg">
                                 {Math.round(highPercentage)}%
                             </span>
                         </div>
                         <div className="flex flex-col">
-                            <h2 className="text-lg font-semibold text-gray-700">High Stocks</h2>
-                            <p className="text-green-600 font-bold">{highCount} products</p>
+                            <h2 className="text-sm sm:text-lg font-semibold text-gray-700">High Stocks</h2>
+                            <p className="text-green-600 font-bold text-sm sm:text-lg">{highCount} products</p>
                         </div>
 
                         {/* Low Stocks Circle */}
-                        <div className='relative w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40'>
+                        <div className='relative w-24 h-24  sm:w-32 sm:h-32 md:w-40 md:h-40'>
                             <svg className='w-full h-full' viewBox="0 0 160 160">
                                 <circle 
                                     className='stroke-gray-200'
@@ -194,13 +194,13 @@ export default async function DashboardPage() {
                                     transform={`rotate(-90 ${80} ${80})`}
                                 />
                             </svg>
-                            <span className="absolute inset-0 flex items-center justify-center font-bold text-lg">
+                            <span className="absolute inset-0 flex items-center justify-center font-bold text-sm sm:text-lg">
                                 {Math.round(lowPercentage)}%
                             </span>
                         </div>
                         <div className="flex flex-col">
-                            <h2 className="text-lg font-semibold text-gray-700">Low Stocks</h2>
-                            <p className="text-red-600 font-bold">{lowProducts.length} products</p>
+                            <h2 className="text-sm sm:text-lg font-semibold text-gray-700">Low Stocks</h2>
+                            <p className="text-red-600 font-bold text-sm sm:text-lg">{lowProducts.length} products</p>
                         </div>
                     </div>
                 </div>
