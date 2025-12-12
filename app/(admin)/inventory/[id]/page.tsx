@@ -5,16 +5,6 @@ import ProductBox from "@/components/ProductBox";
 import { stackServerApp } from "@/stack/server";
 import { Metadata } from "next";
 
-export type Product = {
-    id: number;
-    name: string;
-    quantity: number;
-    price: number;
-    sku: string;
-    userId: string;
-    createdAt: string;
-};
-
 export async function generateMetadata({
     params
 }: { params: Promise<{ id: string }>}): Promise<Metadata> {

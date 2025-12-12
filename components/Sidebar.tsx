@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, LayoutDashboard, PackageSearch, Settings, ChartBarBig, Menu } from "lucide-react";
+import { Box, LayoutDashboard, PackageSearch, Settings, Menu } from "lucide-react";
 import Link from "next/link";
 import { UserButton } from "@stackframe/stack";
 import { useState } from "react";
@@ -8,7 +8,6 @@ import { useState } from "react";
 const navigations = [
     { name: "dashboard", href: "/dashboard", icon: <LayoutDashboard />},
     { name: "inventory", href: "/inventory", icon: <PackageSearch />},
-    { name: "status", href: "/dashboard/status", icon: <ChartBarBig /> },
     { name: "setting", href: "/setting", icon: <Settings />},
 ]
 

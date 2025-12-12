@@ -44,11 +44,11 @@ export default async function Inventorypage({
 
     return (
         <section className="bg-gray-50 min-h-screen p-8">
-            <Link href="/inventory/add" className="bg-blue-600 text-white px-4 py-3 rounded-md hover:bg-blue-800 ">
+            <Link href="/inventory/add" className="bg-blue-600 text-white px-3 py-2 rounded-md hover:bg-blue-800 ">
                 <Plus className="w-5 h-5 inline-block mr-2"/>
                  Add
             </Link>
-            <div className="my-5">
+            <div className="my-5 ">
                 <SearchBox />
             </div>
             <div>

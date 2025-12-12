@@ -2,7 +2,8 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 
 export default function SearchBox() {
     const router = useRouter();
@@ -14,16 +15,11 @@ export default function SearchBox() {
     };
 
     return (
-        <form className="flex gap-2" onSubmit={handleSubmit}>
-            <input 
-                type="text" 
-                value={query ?? ""}
-                onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search your products"  
-                className="px-4 py-2 rounded-lg w-full border border-black focus:border-blue-600 focus:outline-none"/>
-            <button className="px-3 py-2 bg-blue-600 text-white rounded-lg hover:cursor-pointer" type="submit">
+        <form className="flex w-full items-center gap-2" onSubmit={handleSubmit}>
+            <Input type="text" placeholder="Search your products" onChange={(e) => setQuery(e.target.value)}/>
+            <Button type="submit">
                 Search
-            </button>
-        </form>
+            </Button>
+    </form>
     )
 }

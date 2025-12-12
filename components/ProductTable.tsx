@@ -1,6 +1,14 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"
 
 interface Product {
     id: number;
@@ -8,6 +16,7 @@ interface Product {
     sku: string;
     price: number;
     quantity: number;
+    createdAt: string
 }
 
 export default function ProductTabel({
@@ -17,31 +26,25 @@ export default function ProductTabel({
     const router = useRouter();
 
     return (
-        <table className="bg-white rounded-lg shadow-md w-full">
-                    <thead>
-                        <tr>
-                            <th className="text-left px-6 py-3 font-semibold text-lg">Name</th>
-                            <th className="text-left px-6 py-3 font-semibold text-lg">Sku</th>
-                            <th className="text-left px-6 py-3 font-semibold text-lg">Price</th>
-                            <th className="text-left px-6 py-3 font-semibold text-lg">Quantity</th>
-                        </tr>
-                    </thead>
-                    <tbody className="divide-y divide-gray-300">
-                       {products.map(product => {
-                        return (
-                            <tr 
-                                key={product.id} 
-                                className="hover:bg-gray-100 cursor-pointer"
-                                onClick={_ => router.push(`/inventory/${product.id}`)}
-                            >
-                                <td className="px-6 py-4">{product.name}</td>
-                                <td className="px-6 py-4">{product.sku}</td>
-                                <td className="px-6 py-4">{product.price}</td>
-                                <td className="px-6 py-4">{product.quantity}</td>
-                            </tr>
-                        )
-                       })}
-                    </tbody>
-        </table>
+        <Table>
+            <TableHeader>
+                <TableRow>
+                    <TableHead className="w-[100px]">Name</TableHead>
+                    <TableHead>Sku</TableHead>
+                    <TableHead>Quantity</TableHead>
+                    <TableHead className="text-right">Price</TableHead>
+                </TableRow>
+            </TableHeader>
+            <TableBody>
+                {products.map((product) => (
+                    <TableRow key={product.id} onClick={() => router.push(`/inventory/${product.id}`)} className="cursor-pointer">
+                        <TableCell className="font-medium">{product.name}</TableCell>
+                        <TableCell>{product.sku}</TableCell>
+                        <TableCell>{product.quantity}</TableCell>
+                        <TableCell className="text-right">{product.price}</TableCell>
+                    </TableRow>
+                ))}
+            </TableBody>
+        </Table>
     )
 }
