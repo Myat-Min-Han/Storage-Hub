@@ -1,6 +1,6 @@
 import db from '@/src';
 import { productsTable } from '@/src/db/schema';
-import { desc, sql } from 'drizzle-orm';
+import { desc, sql, eq } from 'drizzle-orm';
 import { getTrend } from '@/lib/services';
 import { stackServerApp } from "@/stack/server";
 import { PieChartBox } from '@/components/PieChartBox';
@@ -11,11 +11,14 @@ import { last6daysProducts } from "@/lib/actions";
 export default async function DashboardPage() {
 
     await stackServerApp.getUser({ or: 'redirect' });
+    const user = await stackServerApp.getUser();
  
     const [ lastProducts, totalProducts, yesterdayProducts ] = await Promise.all([
-        db.select().from(productsTable).orderBy(desc(productsTable.createdAt)).limit(5),
+        db.select().from(productsTable).orderBy(desc(productsTable.createdAt)).limit(5)
+        .where(eq(productsTable.userId, user?.id!)),
         db.select().from(productsTable),
-        db.select().from(productsTable).where(sql`${productsTable.createdAt} = CURRENT_DATE - interval '1 day'`) // last 24h
+        db.select().from(productsTable)
+        .where(sql`${productsTable.createdAt} = CURRENT_DATE - interval '1 day' AND ${productsTable.id} = ${user!.id}`)// last 24h
     ]);
 
     const lowProducts = totalProducts.filter(product => product.quantity! <= 5); 
