@@ -1,5 +1,4 @@
-import { integer, pgTable, varchar, date, real, uuid } from "drizzle-orm/pg-core"
-import { sql } from "drizzle-orm"
+import { integer, pgTable, varchar, date, real, uuid, timestamp } from "drizzle-orm/pg-core"
 
 export const productsTable = pgTable("products", {
     id: integer().primaryKey().generatedAlwaysAsIdentity(),
@@ -8,5 +7,5 @@ export const productsTable = pgTable("products", {
     price: real().notNull(),
     sku: varchar({ length: 10 }).unique().notNull(),
     userId: uuid().notNull(),
-    createdAt: date().default(sql`now()`).notNull(),
+    createdAt: timestamp({ withTimezone: true }).defaultNow().notNull()
 });

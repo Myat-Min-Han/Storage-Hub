@@ -36,6 +36,16 @@ export default function AreaChartBox({
     }
   });
 
+  if (datas.length == 0) {
+    return (
+      <Card>
+        <CardHeader>
+          <CardDescription>No data to show</CardDescription>
+        </CardHeader>
+      </Card>
+    )
+  }
+
   return (
     <Card>
       <CardHeader>
@@ -60,6 +70,7 @@ export default function AreaChartBox({
               axisLine={false}
               tickMargin={8}
               tickFormatter={(value) => value.slice(0, 3)}
+              interval={0}
             />
             <ChartTooltip
               cursor={false}

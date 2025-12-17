@@ -2,7 +2,7 @@
 
 import db from "@/src";
 import { productsTable } from "@/src/db/schema";
-import { eq, sql} from "drizzle-orm";
+import { eq, sql, gte} from "drizzle-orm";
 
 type NewProduct = {
     name: string;
@@ -48,23 +48,27 @@ export async function removeProduct(id: number) {
 }
 
 export async function last6daysProducts() {
-  const results = await db
-                    .select({
-                      day: sql<string>`TO_CHAR(${productsTable.createdAt}, 'Dy')`,
-                      count: sql<number>`COUNT(*)`,
-                    })
-                    .from(productsTable)
-                    .where(sql`${productsTable.createdAt} >= CURRENT_DATE - interval '6 days'`)
-                    .groupBy(sql`DATE(${productsTable.createdAt})`)
-                    .orderBy(sql`DATE(${productsTable.createdAt})`)
+  const cutoff = new Date();
+  cutoff.setDate(cutoff.getDate() - 6);
 
-  const chartData = results.map((row) => {
-    return {
-      day: row.day.trim(),
-      product: row.count,
-    }
-  });
-  return chartData;
+  const results = await db
+    .select({
+      date: sql<string>`DATE(${productsTable.createdAt})`,
+      day: sql<string>`TO_CHAR(${productsTable.createdAt}, 'Dy')`,
+      count: sql<number>`COUNT(*)`,
+    })
+    .from(productsTable)
+    .where(gte(productsTable.createdAt, cutoff))
+    .groupBy(
+      sql`DATE(${productsTable.createdAt})`,
+      sql`TO_CHAR(${productsTable.createdAt}, 'Dy')`
+    )
+    .orderBy(sql`DATE(${productsTable.createdAt})`);
+
+  return results.map((row) => ({
+    day: row.day.trim(),
+    product: row.count,
+  }));
 }
 
 export async function getDailyStatus() {

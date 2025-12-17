@@ -14,10 +14,9 @@ async function main() {
         quantity: faker.number.int({ min: 1, max: 100 }),
         price: faker.number.float({ min: 0, max: 100 , fractionDigits: 2}),
         sku: getRandomSku(),
-        userId: "e9906ed0-c499-47a8-ad34-aeddde98ddd6",
-        createdAt: faker.date.past().toISOString().split("T")[0]
+        userId: "5b741eb5-6dfd-4a24-a331-5d7df83f7c01",
+        createdAt: faker.date.recent({ days: 7 })
     }));
-
     await db.insert(productsTable).values(fakeProducts);
 };
 
