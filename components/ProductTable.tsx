@@ -16,7 +16,7 @@ interface Product {
     sku: string;
     price: number;
     quantity: number;
-    createdAt: string
+    createdAt: Date
 }
 
 export default function ProductTabel({
